@@ -1,0 +1,47 @@
+# XMPP server main configuration file
+#
+
+
+#
+# Rename to `.env` and adjust to make it work!
+#
+
+# A freely chooseable name (required)
+NAME="Le chat noir"
+
+
+# XMPP account of the server's administrator (required)
+XMPP_ADMIN=USER@YOURDOMAIN.TLD
+
+
+# Domain for the xmpp server (required)
+XMPP_SERVER_URL=YOURDOMAIN.TLD
+
+
+# Group chat server (required)
+#
+# A different domain pointing to the same server for running a multi-user chat 
+# (MUC). It can be a simple CNAME record in your DNS pointing to 
+# XMPP_SERVER_URL. It is required by XMPP, for more information check 
+# https://prosody.im/doc/modules/mod_muc
+#
+XMPP_GROUPS_URL=chat.YOURDOMAIN.TLD
+
+
+# Web chat client (required)
+#
+# A domain for the web chat client. All domains can be used, that point to the 
+# server. Also the same as XMPP_SERVER_URL or XMPP_GROUPS_URL and also any 
+# other (sub) domain.
+#
+XMPP_WEBCLIENT_URL=chat.YOURDOMAIN.TLD
+
+
+# Host of the xmpp addresses (optional)
+#
+# This field is optional and should be specified, in case the XMPP_SERVER_URL 
+# is not the same as the host used for forming the user jabber IDs. Be aware 
+# that using this, valid certificates need to be provided by your 
+# configuration.
+# 
+# XMPP_HOST_URL=

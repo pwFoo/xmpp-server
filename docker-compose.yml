@@ -1,0 +1,66 @@
+version: '2'
+networks:
+  web:
+    driver: "bridge"
+
+services:
+
+  # Reverse proxy: traefik
+  reverseproxy:
+    build: "./build/traefik/"
+    command: "--logLevel=ERROR"
+    restart: always
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./data/cert:/cert/"
+    labels:
+      - "traefik.enable=false" # set to true to expose Monitoring & API
+      - "traefik.backend=proxy"
+      - "traefik.port=8080"
+    networks:
+      - "web"
+
+  # XMPP chat server: prosody
+  xmpp-server:
+    build: "./build/prosody"
+    restart: always
+    env_file: .env
+    volumes:
+      - ./data/prosody/conf:/etc/prosody/conf.d
+      - ./data/cert:/cert/:ro
+      - ./data/prosody/data:/var/lib/prosody/data
+    ports:
+      # - "5000:5000" # 5000/tcp: mod_proxy65
+      - "5222:5222" # 5222/tcp: client to server
+      - "5269:5269" # 5269/tcp: server to server
+      - "5347:5347" # 5347/tcp: XMPP component
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=xmpp-server"
+      - "traefik.docker.network=xmpp-server_web"
+      - "traefik.port=5280"
+      - "traefik.frontend.rule=Host:$XMPP_SERVER_URL,$XMPP_GROUPS_URL;PathPrefix:/_xmpp/"
+    networks:
+      - web
+
+  # XMPP web client: kaiwa
+  xmpp-webclient:
+    build: "./build/kaiwa"
+    restart: always
+    env_file: .env
+    ports:
+      - 8000:8000
+    environment:
+        NODE_ENV: development
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=xmpp-webclient"
+      - "traefik.docker.network=xmpp-server_web"
+      - "traefik.port=8000"
+      - "traefik.frontend.rule=Host:$XMPP_WEBCLIENT_URL"
+    networks:
+      - web
