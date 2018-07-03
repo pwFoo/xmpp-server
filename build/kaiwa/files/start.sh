@@ -9,8 +9,9 @@ elif [ -z "${NAME}" ]; then
     echo "Failure starting xmpp server: The environment variable NAME must be set."
 else
 
-sed -i "s#{{NAME}}#${NAME}#" /usr/src/app/dev_config.json
-sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /usr/src/app/dev_config.json
-sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /usr/src/app/dev_config.json
+    sed -i "s#{{NAME}}#${NAME}#" /usr/src/app/dev_config.json
+    sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /usr/src/app/dev_config.json
+    sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /usr/src/app/dev_config.json
 
-npm start
+    npm start
+fi

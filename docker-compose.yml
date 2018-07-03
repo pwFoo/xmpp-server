@@ -7,7 +7,7 @@ services:
 
   # Reverse proxy: traefik
   reverseproxy:
-    build: "./build/traefik/"
+    image: xamanu/traefik
     command: "--logLevel=ERROR"
     restart: always
     env_file: .env
