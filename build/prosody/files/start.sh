@@ -7,6 +7,8 @@ elif [ -z "${XMPP_GROUPS_URL}" ]; then
     echo "Failure starting xmpp server: The environment variable XMPP_GROUPS_URL must be set."
 elif [ -z "${XMPP_ADMIN}" ]; then
     echo "Failure starting xmpp server: The environment variable XMPP_ADMIN must be set."
+elif [ -z "${SECRET}" ]; then
+    echo "Failure starting xmpp server: The environment variable SECRET must be set."
 else
 
     # Prepare certificates to be in the default location where prosody expects them
@@ -28,6 +30,7 @@ else
     # Replace variables in configuration
     sed -i "s#{{XMPP_ADMIN}}#${XMPP_ADMIN}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/prosody.cfg.lua
+    sed -i "s#{{SECRET}}#${SECRET}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/standard-host.cfg.lua
     sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/standard-host.cfg.lua
 

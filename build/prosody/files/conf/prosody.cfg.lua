@@ -80,14 +80,37 @@ registration_throttle_max = 1
 registration_throttle_period = 300
 register_web_template = "/usr/lib/prosody-register-web-template"
 
+-- BOSH and websocket settings
 cross_domain_bosh = "*";
 cross_domain_websocket = true;
 consider_websocket_secure = true;
 consider_bosh_secure = true
 
+-- MAM
+archive_expires_after = "1y"
+
+-- HTTP upload settings
+http_upload_external_base_url = "https://XMPP_SERVER_URL/_xmpp/upload/"
+http_upload_external_secret = "{{SECRET}}"
+http_upload_external_file_size_limit = 50000000 -- 50 MB
+
+
+-- Select the authentication backend to use. The 'internal' providers
+-- use Prosody's configured data storage to store the authentication data.
+-- To allow Prosody to offer secure authentication mechanisms to clients, the
+-- default provider stores passwords in plaintext. If you do not trust your
+-- server please see http://prosody.im/doc/modules/mod_auth_internal_hashed
+-- for information about using the hashed backend.
+authentication = "internal_plain"
+
+storage = {
+  archive2 = "sql";
+}
+
+sql = { driver = "SQLite3", database = "prosody.sqlite3" }
+
 -- Most of configuration is split up in separate files
 Include "modules.cfg.lua";
-Include "storage.cfg.lua";
 Include "e2e-policy.cfg.lua";
 Include "standard-host.cfg.lua";
 

@@ -37,6 +37,14 @@ XMPP_GROUPS_URL=chat.YOURDOMAIN.TLD
 XMPP_WEBCLIENT_URL=chat.YOURDOMAIN.TLD
 
 
+# Secret (required)
+#
+# A freely definable secret. Gives authorization to certain applications to 
+# talk to each other. For example allowing the xmpp-server to upload to the 
+# filer component.
+SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
+
+
 # Host of the xmpp addresses (optional)
 #
 # This field is optional and should be specified, in case the XMPP_SERVER_URL 
