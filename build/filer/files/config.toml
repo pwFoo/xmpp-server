@@ -3,7 +3,7 @@
 ### (rename this file to "config.toml"!)
 
 ### IP address and port to listen to, e.g. "127.0.0.1:5050"
-listenport      = "0.0.0.0:80"
+listenport      = "0.0.0.0:5050"
 
 ### Secret (must match the one in prosody.conf.lua!)
 secret          = "{{SECRET}}"

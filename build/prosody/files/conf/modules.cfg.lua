@@ -43,14 +43,11 @@ modules_enabled = {
     -- Community modules (let's have a modern chat server)
 		"carbons"; -- Syncing of messages between compatible devices
 		"smacks"; -- Support for unstable (mobile) Networks
-		"smacks_offline" -- Optimize for clients that implement "mam"
-		"smacks_noerror" -- Optimize for clients that implement "mam"
+		"smacks_offline"; -- Optimize for clients that implement "mam"
+		"smacks_noerror"; -- Optimize for clients that implement "mam"
 		"csi"; -- Drop "less urgent" stanzas for mobile to save energy
 		"csi_battery_saver"; -- Hold unimportant stanzas until client comes online. 
         "cloud_notify"; -- "Push notifcations" for new messages
-		"mam_muc"; -- Store mucs' chat history server sided.
 		"pep_vcard_avatar"; -- Advice other clients about changes of the avatar
-		"vcard_muc"; -- Avatars for group chats
 		"omemo_all_access"; -- Allow encryption with unaccepted accounts
-		--"e2e_policy"; -- Require end-2-end encryption
 }

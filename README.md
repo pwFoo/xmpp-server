@@ -1,4 +1,4 @@
-# XMPP server
+# XMPP server distribution
 
 Easy to setup and full featured [XMPP](https://xmpp.org/) server based on Docker Compose using open technology for real-time communication.
 
@@ -35,10 +35,11 @@ Done.
 Only some variables you have to specify in the [configuration file](./env-example).
 
 * `NAME`: A freely chooseable name (required)
+* `SECRET`:  A freely definable common secret for the components to interact (required)
 * `XMPP_ADMIN`: XMPP account of the server's administrator (required)
 * `XMPP_SERVER_URL`: Domain for the xmpp server (required)
-* `XMPP_GROUPS_URL`: Group chat server (required)
-* `XMPP_WEBCLIENT_URL`: Web chat client (required)
+* `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
+* `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
 * `XMPP_HOST_URL`: Host of the xmpp addresses (optional)
 
 ### License

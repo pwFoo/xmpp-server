@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-EXPOSE 80
+EXPOSE 5050
 VOLUME ["/app/upload"]
 
 ENV DEBIAN_FRONTEND noninteractive

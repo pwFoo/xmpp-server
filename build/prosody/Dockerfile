@@ -9,7 +9,7 @@ VOLUME ["/var/lib/prosody"]
 # 5269/tcp: server to server
 # 5280/tcp: http server (bosh, http_upload, etc.)
 # 5347/tcp: XMPP component
-EXPOSE 5000 5222 5223 5269 5280 5347
+EXPOSE 5222 5223 5269 5280
 
 ENV DEBIAN_FRONTEND noninteractive
 

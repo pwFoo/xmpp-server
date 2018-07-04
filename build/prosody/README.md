@@ -1,7 +1,22 @@
 Docker image for XMPP Prosody
 ======================
 
-Prosody is a server for [XMPP](https://xmpp.org) (a.k.a. Jabber), open technology for real-time communication.
+Prosody is a server for [XMPP](https://xmpp.org) - open technology for real-time communication.
+
+
+This setup comes out-of-the-box with standard configuration. Only the following environment variables need to be specified:
+
+* `NAME`: A freely chooseable name (required)
+* `SECRET`:  A freely definable common secret for the components to interact (required)
+* `XMPP_ADMIN`: XMPP account of the server's administrator (required)
+* `XMPP_SERVER_URL`: Domain for the xmpp server (required)
+* `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
+* `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
+* `XMPP_HOST_URL`: Host of the xmpp addresses (optional)
+
+You can start this container with one single command:
+
+`docker run --env NAME="My setup" ... xamanu/xmpp-prosody`
 
 
 This is image part of the easy to setup and full featured [xmpp server configuration](https://github.com/xamanu/xmpp-server) but can be used otherwise.

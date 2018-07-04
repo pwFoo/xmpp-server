@@ -20,19 +20,25 @@ else
         chown -R prosody:prosody /etc/prosody/certs
     fi
 
+    # Eventually add another virtual host
     if [ -n "${XMPP_HOST_URL}" ]; then
-        echo 'VirtualHost ("'${XMPP_HOST_URL}'")' >> /etc/prosody/standard-host.cfg.lua
-        echo '        http_host = "'${XMPP_HOST_URL}'"' >> /etc/prosody/standard-host.cfg.lua
-        echo '        http_external_url = "https://'${XMPP_HOST_URL}'"' >> /etc/prosody/standard-host.cfg.lua
-        echo ''
+        echo 'VirtualHost ("'${XMPP_HOST_URL}'")' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        http_host = "'${XMPP_HOST_URL}'"' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        http_external_url = "https://'${XMPP_HOST_URL}'"' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        disco_items = {' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '                { "{{XMPP_GROUPS_URL}}", "A group chat (muc) service" };' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        }' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '' >> /etc/prosody/virtual-hosts.cfg.lua
     fi
 
     # Replace variables in configuration
     sed -i "s#{{XMPP_ADMIN}}#${XMPP_ADMIN}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/prosody.cfg.lua
+    sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/components.cfg.lua
+    sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/components.cfg.lua
     sed -i "s#{{SECRET}}#${SECRET}#" /etc/prosody/prosody.cfg.lua
-    sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/standard-host.cfg.lua
-    sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/standard-host.cfg.lua
+    sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/virtual-hosts.cfg.lua
+    sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/virtual-hosts.cfg.lua
 
     chown -R prosody:prosody /var/lib/prosody/data
 

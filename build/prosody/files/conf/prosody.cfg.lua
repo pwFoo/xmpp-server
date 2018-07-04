@@ -68,8 +68,9 @@ https_interfaces = {};
 http_paths = {
     bosh = "/_xmpp/http-bind"; 
     files = "/_xmpp/files";
-    upload = "/_xmpp/upload";
     register_web = "/_xmpp/register";
+    pastebin = "_xmpp/pastebin";
+    upload = "/_xmpp/upload";
     websocket = "/_xmpp/websocket"
 }
 
@@ -111,8 +112,8 @@ sql = { driver = "SQLite3", database = "prosody.sqlite3" }
 
 -- Most of configuration is split up in separate files
 Include "modules.cfg.lua";
-Include "e2e-policy.cfg.lua";
-Include "standard-host.cfg.lua";
+Include "components.cfg.lua";
+Include "virtual-hosts.cfg.lua";
 
 -- Include configuration to be added if needed (for example for more hosts)
 Include "conf.d/*.cfg.lua";
