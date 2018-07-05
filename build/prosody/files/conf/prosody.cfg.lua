@@ -67,10 +67,7 @@ https_ports = {};
 https_interfaces = {};
 http_paths = {
     bosh = "/_xmpp/http-bind"; 
-    files = "/_xmpp/files";
     register_web = "/_xmpp/register";
-    pastebin = "_xmpp/pastebin";
-    upload = "/_xmpp/upload";
     websocket = "/_xmpp/websocket"
 }
 
@@ -109,6 +106,12 @@ storage = {
 }
 
 sql = { driver = "SQLite3", database = "prosody.sqlite3" }
+
+-- Provide information where to contact the administrator
+contact_info = {
+    abuse = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{ADMIN_XMPP}}" };
+    admin = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{ADMIN_XMPP}}" };
+  };
 
 -- Most of configuration is split up in separate files
 Include "modules.cfg.lua";

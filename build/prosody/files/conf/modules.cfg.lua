@@ -13,7 +13,7 @@ modules_enabled = {
 		"disco"; -- Service discovery
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 		"http_upload_external"; -- Upload files to a server and share with others.
-		-- "bosh"; -- Enable BOSH ("XMPP over HTTP") for web clients 
+		"bosh"; -- Enable BOSH ("XMPP over HTTP") for web clients 
 		-- "websocket"; -- Websockets are cool, but probably not ready, yet.
 		-- "http_files"; -- Serve static files from a directory over HTTP
 
@@ -41,13 +41,19 @@ modules_enabled = {
 		-- "welcome"; -- Welcome users who register accounts
 
     -- Community modules (let's have a modern chat server)
+		"auto_answer_disco_info"; -- Answers disco#info queries on the behalf of the recipient
+		"cache_c2s_caps"; -- Cache caps on user sessions
 		"carbons"; -- Syncing of messages between compatible devices
-		"smacks"; -- Support for unstable (mobile) Networks
-		"smacks_offline"; -- Optimize for clients that implement "mam"
-		"smacks_noerror"; -- Optimize for clients that implement "mam"
 		"csi"; -- Drop "less urgent" stanzas for mobile to save energy
 		"csi_battery_saver"; -- Hold unimportant stanzas until client comes online. 
         "cloud_notify"; -- "Push notifcations" for new messages
-		"pep_vcard_avatar"; -- Advice other clients about changes of the avatar
+		"graceful_shutdown"; -- Experiment in improving the shutdown experience
+		"invite"; -- Allows users to invite new users
 		"omemo_all_access"; -- Allow encryption with unaccepted accounts
+		"pep_vcard_avatar"; -- Advice other clients about changes of the avatar
+		"s2s_keepalive"; -- Keepalive s2s connections
+		"server_contact_info"; -- Advertise various contact addresses for your XMPP service
+		"smacks"; -- Support for unstable (mobile) Networks
+		"smacks_offline"; -- Optimize for clients that implement "mam"
+		"smacks_noerror"; -- Optimize for clients that implement "mam"
 }

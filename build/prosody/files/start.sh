@@ -5,8 +5,10 @@ if [ -z "${XMPP_SERVER_URL}" ]; then
     echo "Failure starting xmpp server: The environment variable XMPP_SERVER_URL must be set."
 elif [ -z "${XMPP_GROUPS_URL}" ]; then
     echo "Failure starting xmpp server: The environment variable XMPP_GROUPS_URL must be set."
-elif [ -z "${XMPP_ADMIN}" ]; then
-    echo "Failure starting xmpp server: The environment variable XMPP_ADMIN must be set."
+elif [ -z "${ADMIN_EMAIL}" ]; then
+    echo "Failure starting xmpp server: The environment variable ADMIN_EMAIL must be set."
+elif [ -z "${ADMIN_XMPP}" ]; then
+    echo "Failure starting xmpp server: The environment variable ADMIN_XMPP must be set."
 elif [ -z "${SECRET}" ]; then
     echo "Failure starting xmpp server: The environment variable SECRET must be set."
 else
@@ -32,7 +34,8 @@ else
     fi
 
     # Replace variables in configuration
-    sed -i "s#{{XMPP_ADMIN}}#${XMPP_ADMIN}#" /etc/prosody/prosody.cfg.lua
+    sed -i "s#{{ADMIN_EMAIL}}#${ADMIN_EMAIL}#" /etc/prosody/prosody.cfg.lua
+    sed -i "s#{{ADMIN_XMPP}}#${ADMIN_XMPP}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/components.cfg.lua
     sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/components.cfg.lua

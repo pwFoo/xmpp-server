@@ -5,5 +5,5 @@ if [ -z "${SECRET}" ]; then
 else
 
     sed -i "s#{{SECRET}}#${SECRET}#" /app/config.toml
-    exec ./prosody-filer
+    exec ./xmpp-filer
 fi

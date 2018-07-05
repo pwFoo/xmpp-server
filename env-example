@@ -7,15 +7,17 @@
 #
 
 # A freely chooseable name (required)
+#
 NAME="Le chat noir"
+
+# Email address of the server's administrator (required)
+#
+ADMIN_EMAIL=USER@YOURDOMAIN.TLD
 
 
 # XMPP account of the server's administrator (required)
-XMPP_ADMIN=USER@YOURDOMAIN.TLD
-
-
-# Domain for the xmpp server (required)
-XMPP_SERVER_URL=YOURDOMAIN.TLD
+#
+ADMIN_XMPP=USER@YOURDOMAIN.TLD
 
 
 # Group chat server (required)
@@ -42,6 +44,7 @@ XMPP_WEBCLIENT_URL=chat.YOURDOMAIN.TLD
 # A freely definable secret. Gives authorization to certain applications to 
 # talk to each other. For example allowing the xmpp-server to upload to the 
 # filer component.
+#
 SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
 
 

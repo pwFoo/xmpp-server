@@ -1,6 +1,5 @@
 ###
 ### Server configuration
-### (rename this file to "config.toml"!)
 
 ### IP address and port to listen to, e.g. "127.0.0.1:5050"
 listenport      = "0.0.0.0:5050"
@@ -12,4 +11,4 @@ secret          = "{{SECRET}}"
 storeDir        = "./uploads/"
 
 ### Subdirectory for HTTP upload / download requests (usually "upload/")
-uploadSubDir    = "upload/"
+uploadSubDir    = "_xmpp/upload/"
