@@ -91,7 +91,7 @@ consider_bosh_secure = true
 archive_expires_after = "1y"
 
 -- HTTP upload settings
-http_upload_external_base_url = "https://XMPP_SERVER_URL/_xmpp/upload/"
+http_upload_external_base_url = "https://{{XMPP_SERVER_URL}}/_xmpp/upload/"
 http_upload_external_secret = "{{SECRET}}"
 http_upload_external_file_size_limit = 50000000 -- 50 MB
 
