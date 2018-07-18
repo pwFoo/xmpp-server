@@ -19,6 +19,9 @@ else
         /dumpcerts.sh /cert/acme.json /tmp/certs
         mv /tmp/certs/certs/${XMPP_SERVER_URL}.crt /tmp/certs/private/${XMPP_SERVER_URL}.key /etc/prosody/certs/
         mv /tmp/certs/certs/${XMPP_GROUPS_URL}.crt /tmp/certs/private/${XMPP_GROUPS_URL}.key /etc/prosody/certs/
+        mv /tmp/certs/certs/${XMPP_HOST_URL}.crt /tmp/certs/private/${XMPP_HOST_URL}.key /etc/prosody/certs/
+        mv /tmp/certs/certs/${XMPP_ANOTHER_URL}.crt /tmp/certs/private/${XMPP_ANOTHER_URL}.key /etc/prosody/certs/
+
         chown -R prosody:prosody /etc/prosody/certs
     fi
 
@@ -27,6 +30,18 @@ else
         echo 'VirtualHost ("'${XMPP_HOST_URL}'")' >> /etc/prosody/virtual-hosts.cfg.lua
         echo '        http_host = "'${XMPP_HOST_URL}'"' >> /etc/prosody/virtual-hosts.cfg.lua
         echo '        http_external_url = "https://'${XMPP_HOST_URL}'"' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        disco_items = {' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '                { "{{XMPP_GROUPS_URL}}", "A group chat (muc) service" };' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        }' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '' >> /etc/prosody/virtual-hosts.cfg.lua
+    fi
+
+    # Eventually add another virtual host
+    if [ -n "${XMPP_ANOTHER_URL}" ]; then
+        echo '' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo 'VirtualHost ("'${XMPP_ANOTHER_URL}'")' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        http_host = "'${XMPP_SERVER_URL}'"' >> /etc/prosody/virtual-hosts.cfg.lua
+        echo '        http_external_url = "https://'${XMPP_SERVER_URL}'"' >> /etc/prosody/virtual-hosts.cfg.lua
         echo '        disco_items = {' >> /etc/prosody/virtual-hosts.cfg.lua
         echo '                { "{{XMPP_GROUPS_URL}}", "A group chat (muc) service" };' >> /etc/prosody/virtual-hosts.cfg.lua
         echo '        }' >> /etc/prosody/virtual-hosts.cfg.lua
