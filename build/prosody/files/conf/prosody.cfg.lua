@@ -48,7 +48,6 @@ ssl = {
     certificate = "/etc/prosody/certs/{{XMPP_SERVER_URL}}.crt";
 }
 
-
 -- Required for init scripts posix and prosodyctl
 pidfile = "/var/run/prosody/prosody.pid"
 
@@ -61,10 +60,8 @@ log = {
 -- HTTP Settings
 -- bind to traditional BOSH port on localhost only, don't use HTTPS
 -- as this sits behind a reverse proxy that handles HTTPS.
-http_ports = { 5280 };
-http_interfaces = { "0.0.0.0" };
-https_ports = {};
-https_interfaces = {};
+http_host = "{{XMPP_SERVER_URL}}"
+http_external_url = "https://{{XMPP_SERVER_URL}}/"
 http_paths = {
     bosh = "/_xmpp/http-bind"; 
     register_web = "/_xmpp/register";

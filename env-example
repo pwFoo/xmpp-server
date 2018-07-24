@@ -48,11 +48,14 @@ XMPP_WEBCLIENT_URL=chat.YOURDOMAIN.TLD
 SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
 
 
-# Host of the xmpp addresses (optional)
+# Hosts of the xmpp addresses (optional)
 #
 # This field is optional and should be specified, in case the XMPP_SERVER_URL 
-# is not the same as the host used for forming the user jabber IDs. Be aware 
+# is not the same as the hosts used for forming the user jabber IDs. Be aware 
 # that using this, valid certificates need to be provided by your 
 # configuration.
+#
+# Several hosts can be speficied, just separate them with a whitespace
+# for example: example.com example.org example.de
 # 
-# XMPP_HOST_URL=
+# XMPP_HOST_URLS=

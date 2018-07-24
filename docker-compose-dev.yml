@@ -1,0 +1,65 @@
+version: '2'
+networks:
+  web:
+    driver: "bridge"
+
+services:
+
+  # Reverse proxy: traefik
+  reverseproxy:
+    image: xamanu/traefik
+    command: '--logLevel=ERROR --acme.domains="${XMPP_GROUPS_URL},${XMPP_HOST_URL}" --acme.email="${ADMIN_EMAIL}"'
+    restart: always
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./data/cert:/cert/"
+    labels:
+      - "traefik.enable=false" # set to true to expose Monitoring & API
+      - "traefik.backend=proxy"
+      - "traefik.port=8080"
+    networks:
+      - "web"
+
+  # XMPP chat server: prosody
+  xmpp-server:
+    build: ./build/prosody
+    restart: always
+    env_file: .env
+    volumes:
+      - ./data/prosody/conf:/etc/prosody/conf.d
+      - ./data/cert:/cert/:ro
+      - ./data/prosody/data:/var/lib/prosody/data
+    ports:
+      - "5222:5222" # 5222/tcp: client to server
+      - "5269:5269" # 5269/tcp: server to server
+      - "5280:5280" # 5280/tcp: http server
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=xmpp-server"
+      - "traefik.docker.network=deploy_web"
+      - "traefik.frontend.rule=Host:$XMPP_SERVER_URL;PathPrefix:/_xmpp"
+      - "traefik.port=5280"
+    networks:
+      - web
+
+  # XMPP web client: prosody-filer
+  xmpp-filer:
+    build: ./build/filer
+    restart: always
+    env_file: .env
+    volumes:
+      - ./data/http-upload:/app/uploads
+    ports:
+      - 5050:5050
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=xmpp-filer"
+      - "traefik.docker.network=deploy_web"
+      - "traefik.port=5050"
+      - "traefik.frontend.rule=Host:$XMPP_SERVER_URL;PathPrefix:/_xmpp/upload"
+    networks:
+      - web

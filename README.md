@@ -17,9 +17,9 @@ Before you start, you have to configure your domain's **dynamic name server (DNS
 
 
 ```
-xmpp.example.com.        A        XXX.XXX.XXX.XXX        (XMPP_SERVER_URL)
-rooms.example.com.       CNAME    xmpp.example.com.      (XMPP_GROUPS_URL)
-chat.example.com.        CNAME    xmpp.example.com.      (XMPP_WEBCLIENT_URL)
+xmpp.example.com.            A        XXX.XXX.XXX.XXX        (XMPP_SERVER_URL)
+conference.xmpp.example.com. CNAME    xmpp.example.com.      (XMPP_GROUPS_URL)
+chat.example.com.            CNAME    xmpp.example.com.      (XMPP_WEBCLIENT_URL)
 ```
 
 After this, you can **install the xmpp server** just with a few easy steps:
@@ -40,7 +40,7 @@ Only some variables you have to specify in the [configuration file](./env-exampl
 * `XMPP_SERVER_URL`: Domain for the xmpp server (required)
 * `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
 * `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
-* `XMPP_HOST_URL`: Host of the xmpp addresses (optional)
+* `XMPP_HOST_URLS`: Virtual hosts for xmpp addresses, TLS certificates need to be provided (optional)
 
 ### License
 
