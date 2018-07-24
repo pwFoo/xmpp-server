@@ -12,7 +12,7 @@ This setup comes out-of-the-box with standard configuration. Only the following 
 * `XMPP_SERVER_URL`: Domain for the xmpp server (required)
 * `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
 * `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
-* `XMPP_HOST_URL`: Host of the xmpp addresses (optional)
+* `XMPP_HOST_URLS`: Virtual hosts for xmpp addresses, TLS certificates need to be provided (optional)
 
 You can start this container with one single command:
 
