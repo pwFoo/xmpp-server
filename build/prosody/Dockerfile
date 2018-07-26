@@ -43,6 +43,7 @@ RUN service prosody stop
 # Adding additional prosody modules
 WORKDIR /usr/lib/
 RUN hg clone https://hg.prosody.im/prosody-modules/
+RUN rm -rf prosody-modules/mod_mam_muc
 RUN git clone https://github.com/xamanu/prosody-register-web-template.git prosody-register-web-template
 
 # Add necessary scripts
