@@ -35,10 +35,10 @@ modules_enabled = {
 		--"motd"; -- Send a message to users when they log in
 
 	-- Registration	modules
-		-- "register"; -- Allow users to register on this server using a client and change passwords
-		-- "register_web"; -- Allow users to register online
-		-- "watchregistrations"; -- Alert admins of registrations
-		-- "welcome"; -- Welcome users who register accounts
+		"register"; -- Allow users to register on this server using a client and change passwords
+		"register_web"; -- Allow users to register online
+		"watchregistrations"; -- Alert admins of registrations
+		--"welcome"; -- Welcome users who register accounts
 
     -- Community modules (let's have a modern chat server)
 		"auto_answer_disco_info"; -- Answers disco#info queries on the behalf of the recipient
