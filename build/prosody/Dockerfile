@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:stretch-slim
 
 VOLUME ["/etc/prosody"]
 VOLUME ["/var/lib/prosody"]
@@ -13,37 +13,41 @@ EXPOSE 5222 5223 5269 5280
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Add prosody developer repository for latest version
-RUN apt-get update --yes && apt-get install --yes gnupg2 wget
-RUN wget https://prosody.im/files/prosody-debian-packages.key
-RUN apt-key add prosody-debian-packages.key && \
-	echo deb http://packages.prosody.im/debian stretch main | tee -a /etc/apt/sources.list
-RUN apt-get remove --purge --yes gnupg2 wget
-
 # Install software
 RUN \
     apt-get update --yes && apt-get install --yes \
         bash \
         ca-certificates \
         coreutils \
-        prosody \
         jq \
         lua-zlib \
         lua-ldap \
         lua-sql-sqlite3 \
         lua-dbi-sqlite3 \
         lua-event \
+        lua5.1 \
+        lua-expat \
+        lua-filesystem \
+        lua-sec \
+        lua-bitop \
+        ssl-cert \
     && apt-get install --yes --no-install-recommends \ 
         mercurial \
         git \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+# Add prosody developer repository for latest version
+RUN apt-get update --yes && apt-get install --yes gnupg2 wget
+RUN wget https://packages.prosody.im/debian/pool/main/p/prosody-trunk/prosody-trunk_1nightly946-1~stretch_amd64.deb
+RUN dpkg -i prosody-trunk_1nightly946-1~stretch_amd64.deb
+RUN rm prosody-trunk_1nightly946-1~stretch_amd64.deb
 
 RUN service prosody stop
 
 # Adding additional prosody modules
 WORKDIR /usr/lib/
 RUN hg clone https://hg.prosody.im/prosody-modules/
-RUN rm -rf prosody-modules/mod_mam_muc
 RUN git clone https://github.com/xamanu/prosody-register-web-template.git prosody-register-web-template
 
 # Add necessary scripts

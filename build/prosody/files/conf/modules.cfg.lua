@@ -28,7 +28,8 @@ modules_enabled = {
 		"offline"; -- Store offline messages
 		"blocklist"; -- Support privacy lists
 		"blocking"; -- Allow users to block communications with other users
-		"pep"; -- Enables users to publish their mood, activity, playing music and more
+		-- "pep"; -- Enables users to publish their mood, activity, playing music and more
+		"pep_simple"; -- Old pep implementation, until omemo_all_access supports it
 		"mam"; -- Store chat history server sided.
 		--"groups"; -- Shared roster support
 		--"announce"; -- Send announcement to all online users
