@@ -20,6 +20,7 @@ RUN \
         ca-certificates \
         coreutils \
         jq \
+        libicu57 \
         lua-zlib \
         lua-ldap \
         lua-sql-sqlite3 \
@@ -39,9 +40,9 @@ RUN \
 
 # Add prosody developer repository for latest version
 RUN apt-get update --yes && apt-get install --yes gnupg2 wget
-RUN wget https://packages.prosody.im/debian/pool/main/p/prosody-trunk/prosody-trunk_1nightly946-1~stretch_amd64.deb
-RUN dpkg -i prosody-trunk_1nightly946-1~stretch_amd64.deb
-RUN rm prosody-trunk_1nightly946-1~stretch_amd64.deb
+RUN wget https://packages.prosody.im/debian/pool/main/p/prosody-trunk/prosody-trunk_1nightly1119-1~stretch_amd64.deb
+RUN dpkg -i prosody-trunk_1nightly1119-1~stretch_amd64.deb
+RUN rm prosody-trunk_1nightly1119-1~stretch_amd64.deb
 
 RUN service prosody stop
 
