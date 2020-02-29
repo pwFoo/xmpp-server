@@ -20,6 +20,17 @@ RUN \
         ca-certificates \
         coreutils \
         jq \
+        lua-zlib \
+        lua-ldap \
+        lua-sql-sqlite3 \
+        lua-dbi-sqlite3 \
+        lua-event \
+        lua5.1 \
+        lua-expat \
+        lua-filesystem \
+        lua-sec \
+        lua-bitop \
+        ssl-cert \
     && apt-get install --yes --no-install-recommends \ 
         mercurial \
         git \
@@ -28,7 +39,7 @@ RUN \
 
 # Add prosody backports repository for latest version
 RUN printf "deb http://deb.debian.org/debian buster-backports main non-free" > /etc/apt/sources.list.d/backports.list
-RUN apt-get update --yes && apt-get -t buster-backports install prosody
+RUN apt-get update --yes && apt-get -t buster-backports install --yes prosody
 
 RUN service prosody stop
 
