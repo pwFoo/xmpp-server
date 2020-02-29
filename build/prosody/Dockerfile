@@ -19,6 +19,7 @@ RUN \
         bash \
         ca-certificates \
         coreutils \
+        jq \
     && apt-get install --yes --no-install-recommends \ 
         mercurial \
         git \
@@ -27,7 +28,7 @@ RUN \
 
 # Add prosody backports repository for latest version
 RUN printf "deb http://deb.debian.org/debian buster-backports main non-free" > /etc/apt/sources.list.d/backports.list
-RUN apt-get update --yes && apt-get -t buster-backports install --yes prosody
+RUN apt-get update --yes && apt-get -t buster-backports install prosody
 
 RUN service prosody stop
 
