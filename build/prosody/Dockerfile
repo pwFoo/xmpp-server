@@ -38,11 +38,9 @@ RUN \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
-# Add prosody developer repository for latest version
-RUN apt-get update --yes && apt-get install --yes gnupg2 wget
-RUN wget https://packages.prosody.im/debian/pool/main/p/prosody-trunk/prosody-trunk_1nightly1119-1~stretch_amd64.deb
-RUN dpkg -i prosody-trunk_1nightly1119-1~stretch_amd64.deb
-RUN rm prosody-trunk_1nightly1119-1~stretch_amd64.deb
+# Add prosody backports repository for latest version
+RUN printf "deb http://deb.debian.org/debian buster-backports main non-free" > /etc/apt/sources.list.d/backports.list
+RUN apt-get update --yes && apt-get -t buster-backports install prosody
 
 RUN service prosody stop
 
