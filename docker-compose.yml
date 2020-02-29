@@ -47,15 +47,15 @@ services:
     networks:
       - web
 
-  # XMPP chat server: prosody
+  # XMPP chat server: ejabberd
   xmpp-server:
-    image: xamanu/xmpp-prosody
+    image: ejabberd/ecs:20.02
     restart: unless-stopped
     env_file: .env
     volumes:
-      - ./data/prosody/conf:/etc/prosody/conf.d
+      - ./data/ejabberd/conf:/etc/ejabberd/conf.d
       - ./data/cert:/cert/:ro
-      - ./data/prosody/data:/var/lib/prosody/data
+      - ./data/ejabberd/data:/var/lib/ejabberd/data
     ports:
       - "5222:5222" # 5222/tcp: client to server
       - "5269:5269" # 5269/tcp: server to server
