@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 EXPOSE 5050
 VOLUME ["/app/uploads"]
