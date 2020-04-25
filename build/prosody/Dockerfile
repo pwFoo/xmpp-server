@@ -42,14 +42,13 @@ RUN apt-get update --yes && apt-get install -y --no-install-recommends \
         ssl-cert \
         mercurial \
         git \
-    && apt-get -t buster-backports install prosody \
+    && apt-get -t buster-backports install prosody prosody-modules \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Adding additional prosody modules
 RUN service prosody stop
 WORKDIR /usr/lib/
-RUN hg clone https://hg.prosody.im/prosody-modules/
-RUN git clone https://github.com/xamanu/prosody-register-web-template.git prosody-register-web-template
+#RUN git clone https://github.com/xamanu/prosody-register-web-template.git prosody-register-web-template
 
 RUN mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody
 

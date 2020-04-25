@@ -59,3 +59,11 @@ SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
 # for example: example.com example.org example.de
 # 
 # XMPP_HOST_URLS=
+
+
+# Dash board access
+#
+# You can set an htaccess username and password to restrict access to the
+# reverse proxy dashboard.
+#
+# DASHBOARD_HTACCESS=
