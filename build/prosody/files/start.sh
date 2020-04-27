@@ -29,6 +29,19 @@ else
     sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/virtual-hosts.cfg.lua
     sed -i "s#{{SECRET}}#${SECRET}#" /etc/prosody/prosody.cfg.lua
 
+    # Replace optional variables with configuration
+    if [ -z "${TURN_HOST}" ]; then
+        sed -i "s#{{TURN_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/prosody.cfg.lua
+    else
+        sed -i "s#{{TURN_HOST}}# #" /etc/prosody/prosody.cfg.lua
+    fi
+
+    if [ -z "${SECRET}" ]; then
+        sed -i "s#{{SECRET}}#${SECRET}#" /etc/prosody/prosody.cfg.lua
+    else
+        sed -i "s#{{SECRET}}# #" /etc/prosody/prosody.cfg.lua
+    fi
+
     mkdir -p /tmp/certs && mkdir -p /etc/prosody/certs
 
     # Prepare certificates to be in the default location where prosody expects them

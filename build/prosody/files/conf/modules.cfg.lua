@@ -25,9 +25,10 @@ modules_enabled = {
 		"roster"; -- Allow users to have a roster.
 		"saslauth"; -- Authentication for clients and servers.
 		"smacks"; -- Support for unstable (mobile) Networks
+		"throttle_presence"; -- Reduce presence status updates
 		"time"; -- Let others know the time here on this server
 		"tls"; -- Add support for secure TLS on connections
-		"throttle_presence"; -- Reduce presence status updates
+		"turncredentials"; -- Turn credentials for video and phone calls
 		"uptime"; -- Report how long server has been running
 		"vcard"; -- Allow users to set vCards
 		"version"; -- Replies to server version requests

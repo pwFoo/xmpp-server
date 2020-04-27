@@ -47,7 +47,8 @@ XMPP_WEBCLIENT_URL=chat.YOURDOMAIN.TLD
 #
 # A freely definable secret. Gives authorization to certain applications to 
 # talk to each other. For example allowing the xmpp-server to upload to the 
-# filer component.
+# filer component or to use the attached turn server for audio or video 
+# conversations.
 #
 SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
 
@@ -64,6 +65,14 @@ SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
 XMPP_HOST_URL_1 =
 XMPP_HOST_URL_2 =
 XMPP_HOST_URL_3 =
+
+# Turn server (optional)
+#
+# Configure valid credentials to enable turn server support for audio and 
+# video calls. Leave uncommented and empty if not used.
+#
+TURN_SERVER_URL=
+
 
 # Dash board access
 #

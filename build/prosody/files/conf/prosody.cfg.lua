@@ -96,12 +96,7 @@ contact_info = {
     admin = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{ADMIN_XMPP}}" };
   };
 
-
---
 -- SMACK settings 
--- (also for relevant for push)
-----------------------------------
-
 smacks_enabled_s2s = true
 smacks_hibernation_time = 3600 
 smacks_max_unacked_stanzas = 10
@@ -109,11 +104,12 @@ smacks_max_ack_delay = 60
 smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
 
-
---
 -- Push fix for ChatSecure
 push_notification_important_body = "New Message"
 
+-- Turn server configuration for audio and video calls
+turncredentials_host = {{TURN_HOST}}
+turncredentials_secret = {{TURN_SECRET}}
 
 -- Most of configuration is split up in separate files
 Include "modules.cfg.lua";

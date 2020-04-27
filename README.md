@@ -9,7 +9,7 @@ Everybody needs an open communication tool without walls and gated communities. 
 
 ## Components
 
-[Docker](https://www.docker.com/) images containing the [Prosody](https://prosody.im) server and the web client [Converse.js](https://conversejs.org/). It is orchestrated by the reverse proxy [traefik](https://traefik.io) and provides out-of-the-box secure connections with certificates by [Let's Encrypt](https://letsencrypt.org).
+[Docker](https://www.docker.com/) images containing the [Prosody](https://prosody.im) server and the web client [Converse.js](https://conversejs.org/). It is orchestrated by the reverse proxy [traefik](https://traefik.io) and provides out-of-the-box secure connections with certificates by [Let's Encrypt](https://letsencrypt.org). It is connected to [prosody-filer](https://github.com/ThomasLeister/prosody-filer) for comfortable file upload and exchange. In addition it includes it own [coturn](https://github.com/coturn/coturn) service to support audio and video calls.
 
 ## Installation
 
@@ -40,7 +40,9 @@ Only some variables you have to specify in the [configuration file](./env-exampl
 * `XMPP_SERVER_URL`: Domain for the xmpp server (required)
 * `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
 * `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
+* `TURN_SERVER_URL`: Domain for the turn server (required)
 * `XMPP_HOST_URL_1`, `XMPP_HOST_URL_2` and `XMPP_HOST_URL_3`: Virtual hosts for xmpp addresses (optional)
+
 
 ### License
 
