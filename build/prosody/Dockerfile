@@ -23,6 +23,7 @@ RUN apt-get update --yes && apt-get install -y --no-install-recommends \
         lsb-base \
         procps \
         adduser \
+        jq \
         libidn11 \
         libicu63 \
         libssl1.1 \

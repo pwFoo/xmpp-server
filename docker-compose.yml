@@ -21,7 +21,7 @@ services:
       - '--providers.docker.endpoint=unix:///var/run/docker.sock'
       - '--certificatesresolvers.letsencrypt.acme.httpchallenge=true'
       - '--certificatesresolvers.letsencrypt.acme.email=${ADMIN_EMAIL}'
-      - '--certificatesresolvers.letsencrypt.acme.storage=cert/acme.json'
+      - '--certificatesresolvers.letsencrypt.acme.storage=/cert/acme.json'
       - '--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web'
     ports:
       - '80:80'
