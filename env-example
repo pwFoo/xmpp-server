@@ -20,6 +20,10 @@ ADMIN_EMAIL=USER@YOURDOMAIN.TLD
 ADMIN_XMPP=USER@YOURDOMAIN.TLD
 
 
+# XMPP - Domain for the xmpp server (required)
+#
+XMPP_SERVER_URL=chat.YOURDOMAIN.TLD
+
 # Group chat server (required)
 #
 # A different domain pointing to the same server for running a multi-user chat 
@@ -27,7 +31,7 @@ ADMIN_XMPP=USER@YOURDOMAIN.TLD
 # XMPP_SERVER_URL. It is required by XMPP, for more information check 
 # https://prosody.im/doc/modules/mod_muc
 #
-XMPP_GROUPS_URL=chat.YOURDOMAIN.TLD
+XMPP_GROUPS_URL=conferences.chat.YOURDOMAIN.TLD
 
 
 # Web chat client (required)

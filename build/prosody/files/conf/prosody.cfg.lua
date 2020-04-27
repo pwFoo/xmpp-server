@@ -8,7 +8,6 @@ admins = { "{{XMPP_ADMIN}}" }
 
 -- Paths for data and modules
 data_path = "/var/lib/prosody/data"
-plugin_paths = { "/usr/lib/prosody-modules" }
 
 -- Enable use of libevent for better performance under high load
 -- For more information see: http://prosody.im/doc/libevent

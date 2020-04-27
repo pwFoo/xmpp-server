@@ -12,7 +12,7 @@ modules_enabled = {
 		"dialback"; -- s2s dialback support
 		"disco"; -- Service discovery
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
-		"http_upload_external"; -- Upload files to a server and share with others.
+		-- "http_upload_external"; -- Upload files to a server and share with others.
 		"bosh"; -- Enable BOSH ("XMPP over HTTP") for web clients 
 		-- "websocket"; -- Websockets are cool, but probably not ready, yet.
 		-- "http_files"; -- Serve static files from a directory over HTTP
@@ -46,5 +46,5 @@ modules_enabled = {
 		"cloud_notify"; -- "Push notifcations" for new messages
 		"invite"; -- Allows users to invite new users
 		"smacks"; -- Support for unstable (mobile) Networks
-		-- "turncredentials"; -- Turn credentials for video and phone calls
+		"turncredentials"; -- Turn credentials for video and phone calls
 }
