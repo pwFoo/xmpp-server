@@ -59,11 +59,11 @@ SECRET=s0m3l0ngr4nd0mstr1ng-b3cr34tiv3&h4v3fun
 # that using this, valid certificates need to be provided by your 
 # configuration.
 #
-# Several hosts can be speficied, just separate them with a whitespace
-# for example: example.com example.org example.de
+# Several hosts can be speficied. Leave them empty if not used.
 # 
-# XMPP_HOST_URLS=
-
+XMPP_HOST_URL_1 =
+XMPP_HOST_URL_2 =
+XMPP_HOST_URL_3 =
 
 # Dash board access
 #

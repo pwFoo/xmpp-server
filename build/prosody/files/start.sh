@@ -18,7 +18,7 @@ else
     echo "HTTP upload endpoint url: ${XMPP_SERVER_URL}/_xmpp/upload"
     echo "Multi user chat (MUC) url: ${XMPP_GROUPS_URL}"
     
-    # Replace variables in configuration
+    # Replace required variables with configuration
     sed -i "s#{{ADMIN_EMAIL}}#${ADMIN_EMAIL}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{ADMIN_XMPP}}#${ADMIN_XMPP}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/prosody.cfg.lua
@@ -32,13 +32,14 @@ else
 
     # Prepare certificates to be in the default location where prosody expects them
     if [ -f /cert/acme.json ]; then
-        /dumpcerts.sh /cert/acme.json /tmp/certs
+        traefik-certs-dumper file --source /cert/acme.json --dest /tmp/certs --version v2
         mv /tmp/certs/certs/${XMPP_SERVER_URL}.crt /tmp/certs/private/${XMPP_SERVER_URL}.key /etc/prosody/certs/
         mv /tmp/certs/certs/${XMPP_GROUPS_URL}.crt /tmp/certs/private/${XMPP_GROUPS_URL}.key /etc/prosody/certs/
     fi
 
     # Eventually add virtual hosts
-    for host in ${XMPP_HOST_URLS}; do
+    hosts="${XMPP_HOST_URL_1} ${XMPP_HOST_URL_2} ${XMPP_HOST_URL_3}"
+    for host in ${hosts}; do
 
         echo "Virtual host for: ${host}"
 

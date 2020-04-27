@@ -36,7 +36,6 @@ services:
       - traefik.http.routers.traefik.rule=(Host(`$XMPP_SERVER_URL`) && PathPrefix(`/api`)) || (Host(`$XMPP_SERVER_URL`) && PathPrefix(`/dashboard`))
       - traefik.http.routers.traefik.service=api@internal
       - traefik.http.routers.traefik.tls.certresolver=letsencrypt
-      - traefik.http.routers.traefik.tls.domains=${XMPP_GROUPS_URL},${XMPP_SERVER_URL}
       - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.middlewares=dashboardauth
       - traefik.http.middlewares.dashboardauth.basicauth.users=${DASHBOARD_HTACCESS}
@@ -63,9 +62,14 @@ services:
       - '5280:5280'
     labels:
       - traefik.enable=true
-      - traefik.http.routers.xmpp-server.rule=Host(`$XMPP_SERVER_URL`) && Path(`/_xmpp`)
+      - traefik.http.routers.xmpp-server.rule=Host(`$XMPP_SERVER_URL`) && PathPrefix(`/_xmpp`)
       - traefik.http.routers.xmpp-server.entrypoints=websecure
       - traefik.http.routers.xmpp-server.tls=true
+      - traefik.http.routers.xmpp-server.tls.domains[0].main=${XMPP_SERVER_URL}
+      - traefik.http.routers.xmpp-server.tls.domains[1].main=${XMPP_GROUPS_URL}
+      - traefik.http.routers.xmpp-server.tls.domains[3].main=${XMPP_HOST_URL_1}
+      - traefik.http.routers.xmpp-server.tls.domains[4].main=${XMPP_HOST_URL_2}
+      - traefik.http.routers.xmpp-server.tls.domains[5].main=${XMPP_HOST_URL_3}
       - traefik.http.routers.xmpp-server.tls.certresolver=letsencrypt
       - traefik.http.services.xmpp-server.loadbalancer.server.port=5280
     networks:

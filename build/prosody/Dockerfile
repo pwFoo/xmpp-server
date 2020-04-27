@@ -23,6 +23,7 @@ RUN apt-get update --yes && apt-get install -y --no-install-recommends \
         lsb-base \
         procps \
         adduser \
+        curl \
         jq \
         libidn11 \
         libicu63 \
@@ -57,9 +58,12 @@ WORKDIR /usr/lib/
 
 RUN mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody
 
+# Pull traefik-certs-dumper to convert acme.json into crt and key files
+RUN curl -ssL https://github.com/ldez/traefik-certs-dumper/releases/download/v2.7.0/traefik-certs-dumper_v2.7.0_linux_amd64.tar.gz | tar xvfz - -C /usr/local/bin traefik-certs-dumper && \
+    chmod +x /usr/local/bin/traefik-certs-dumper
+
 # Add necessary scripts
 ADD files/start.sh /start.sh
-ADD files/dumpcerts.sh /dumpcerts.sh
 
 # Place configuration
 RUN mkdir -p /etc/prosody/conf.d && mkdir -p /etc/prosody/certs

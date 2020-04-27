@@ -46,5 +46,4 @@ modules_enabled = {
 		"cloud_notify"; -- "Push notifcations" for new messages
 		"invite"; -- Allows users to invite new users
 		"smacks"; -- Support for unstable (mobile) Networks
-		"turncredentials"; -- Turn credentials for video and phone calls
 }
