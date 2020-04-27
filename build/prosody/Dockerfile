@@ -42,7 +42,9 @@ RUN apt-get update --yes && apt-get install -y --no-install-recommends \
         ssl-cert \
         mercurial \
         git \
-    && apt-get -t buster-backports install prosody prosody-modules \
+    && apt-get -t buster-backports install -y \
+        prosody \
+        prosody-modules \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Adding additional prosody modules
