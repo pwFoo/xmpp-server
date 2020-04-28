@@ -9,7 +9,7 @@ Everybody needs an open communication tool without walls and gated communities. 
 
 ## Components
 
-[Docker](https://www.docker.com/) images containing the [Prosody](https://prosody.im) server. It is orchestrated by the reverse proxy [traefik](https://traefik.io) and provides out-of-the-box secure connections with certificates by [Let's Encrypt](https://letsencrypt.org).
+[Docker](https://www.docker.com/) images containing the [Prosody](https://prosody.im) server and the web client [Converse.js](https://conversejs.org/). It is orchestrated by the reverse proxy [traefik](https://traefik.io) and provides out-of-the-box secure connections with certificates by [Let's Encrypt](https://letsencrypt.org).
 
 ## Installation
 
