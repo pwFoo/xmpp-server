@@ -22,6 +22,7 @@ else
     sed -i "s#{{ADMIN_EMAIL}}#${ADMIN_EMAIL}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{ADMIN_XMPP}}#${ADMIN_XMPP}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/prosody.cfg.lua
+    sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/prosody.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/components.cfg.lua
     sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/components.cfg.lua
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/virtual-hosts.cfg.lua

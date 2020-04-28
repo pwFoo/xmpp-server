@@ -25,23 +25,10 @@ allow_registration = false
 c2s_require_encryption = true
 
 -- Force certificate authentication for server-to-server connections?
--- This provides ideal security, but requires servers you communicate
--- with to support encryption AND present valid, trusted certificates.
--- NOTE: Your version of LuaSec must support certificate verification!
--- For more information see http://prosody.im/doc/s2s#security
-s2s_secure_auth = false
+s2s_secure_auth = true
+s2s_insecure_domains = {}
 
--- Many servers don't support encryption or have invalid or self-signed
--- certificates. You can list domains here that will not be required to
--- authenticate using certificates. They will be authenticated using DNS.
---
--- Let's just trust the big guys.
-s2s_insecure_domains = { "gmail.com", "googlemail.com" }
-
--- Even if you leave s2s_secure_auth disabled, you can still require valid
--- certificates for some domains by specifying a list here.
---s2s_secure_domains = { "jabber.org" }
-
+-- Main encrytion keys for this instance
 ssl = {
     key = "/etc/prosody/certs/{{XMPP_SERVER_URL}}.key";
     certificate = "/etc/prosody/certs/{{XMPP_SERVER_URL}}.crt";
@@ -109,10 +96,34 @@ contact_info = {
     admin = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{ADMIN_XMPP}}" };
   };
 
+
+--
+-- SMACK settings 
+-- (also for relevant for push)
+----------------------------------
+
+smacks_enabled_s2s = true
+smacks_hibernation_time = 3600 
+smacks_max_unacked_stanzas = 10
+smacks_max_ack_delay = 60
+smacks_max_hibernated_sessions = 10
+smacks_max_old_sessions = 10
+
+
+--
+-- Push fix for ChatSecure
+push_notification_important_body = "New Message"
+
+
 -- Most of configuration is split up in separate files
 Include "modules.cfg.lua";
 Include "components.cfg.lua";
 Include "virtual-hosts.cfg.lua";
+
+-- Service Discovery
+disco_items = {
+  { "{{XMPP_GROUPS_URL}}", "The multi user chat groups" };
+}
 
 -- Include configuration to be added if needed (for example for more hosts)
 Include "conf.d/*.cfg.lua";
