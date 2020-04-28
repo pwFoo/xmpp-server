@@ -90,5 +90,11 @@ services:
       - traefik.http.routers.xmpp-filer.tls=true
       - traefik.http.routers.xmpp-filer.tls.certresolver=letsencrypt
       - traefik.http.services.xmpp-filer.loadbalancer.server.port=5050
+      - traefik.http.middlewares.xmpp-filer.headers.accesscontrolallowmethods=GET,OPTIONS,PUT
+      - traefik.http.middlewares.xmpp-filer.headers.accesscontrolalloworiginlist=*
+      - traefik.http.middlewares.xmpp-filer.headers.accessControlAllowHeaders=Authorization,Content-Type
+      - traefik.http.middlewares.xmpp-filer.headers.accessControlAllowCredentials=true
+      - traefik.http.routers.xmpp-filer.middlewares=foo-add-prefix@docker
+
     networks:
       - web
