@@ -46,4 +46,5 @@ modules_enabled = {
 		"cloud_notify"; -- "Push notifcations" for new messages
 		"invite"; -- Allows users to invite new users
 		"smacks"; -- Support for unstable (mobile) Networks
+		"carbons"; -- Syncing of messages between compatible devices
 }
