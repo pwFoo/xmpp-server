@@ -65,6 +65,14 @@ XMPP_HOST_URL_1 =
 XMPP_HOST_URL_2 =
 XMPP_HOST_URL_3 =
 
+# Turn server (optional)
+#
+# Configure valid credentials to enable turn server support for audio and 
+# video calls. Leave uncommented and empty if not used.
+#
+TURN_HOST=turn.chat.YOURDOMAIN.TLD
+TURN_EXTERNAL_IP=
+
 # Dash board access
 #
 # You can set an htaccess username and password to restrict access to the
