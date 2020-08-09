@@ -18,8 +18,8 @@ if [ -f /cert/acme.json ]; then
     if [ -f /tmp/certs/${TURN_HOST}/privatekey.pem ]; then
         mv /tmp/certs/${TURN_HOST}/certificate.pem /tmp/certs/${TURN_HOST}/privatekey.pem /etc/coturn/certs/
         # paths to conntecion certificates for encryption
-        echo "cert=/etc/coturn/certs/certificate.pem"
-        echo "pkey=/etc/coturn/certs/privatekey.pem"
+        echo "cert=/etc/coturn/certs/certificate.pem" >> /etc/turnserver.conf
+        echo "pkey=/etc/coturn/certs/privatekey.pem" >> /etc/turnserver.conf
     else
         echo "ERROR: Traefik generated letsencrypt certificates not found!"
     fi
