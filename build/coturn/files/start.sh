@@ -20,6 +20,8 @@ if [ -f /cert/acme.json ]; then
         # paths to conntecion certificates for encryption
         echo "cert=/etc/coturn/certs/certificate.pem"
         echo "pkey=/etc/coturn/certs/privatekey.pem"
+    else
+        echo "ERROR: Traefik generated letsencrypt certificates not found!"
     fi
 fi
 
