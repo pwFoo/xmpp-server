@@ -98,6 +98,8 @@ services:
     build: build/coturn/
     restart: unless-stopped
     env_file: .env
+    volumes:
+      - './data/cert:/cert/:ro'
     ports:
       - "3478"
       - "5349"
