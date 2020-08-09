@@ -9,9 +9,9 @@ RUN curl -ssL https://github.com/ldez/traefik-certs-dumper/releases/download/v2.
     chmod +x /usr/local/bin/traefik-certs-dumper && \
     mkdir -p /etc/coturn/certs
 
-EXPOSE 3478 3478/udp
-EXPOSE 5349 5349/udp
-EXPOSE 49152-65535 49152-65535/udp
+EXPOSE 3478
+EXPOSE 5349
+EXPOSE 49152-65535
 
 COPY ./files/start.sh /
 ENTRYPOINT ["/start.sh"]
