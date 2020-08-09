@@ -31,6 +31,7 @@ else
         traefik-certs-dumper file --domain-subdir --crt-ext=.pem --key-ext=.pem --source /cert/acme.json --dest /tmp/certs --version v2
         if [ -f /tmp/certs/${TURN_HOST}/privatekey.pem ]; then
             mv /tmp/certs/${TURN_HOST}/certificate.pem /tmp/certs/${TURN_HOST}/privatekey.pem /etc/eturnal/tls/
+            chown -R eturnal:eturnal /etc/eturnal
         else
             echo "ERROR: Traefik generated certificates not found for host domain"
         fi
