@@ -1,0 +1,111 @@
+version: '3.8'
+networks:
+  web:
+    driver: 'bridge'
+
+services:
+
+  # Reverse proxy: traefik
+  reverseproxy:
+    image: 'traefik:v2.2'
+    restart: unless-stopped
+    env_file: .env
+    command:
+      - '--api.dashboard=true'
+      - '--entrypoints.web.address=:80'
+      - '--entrypoints.websecure.address=:443'
+      - '--providers.docker=true'
+      - '--providers.docker.watch=true'
+      - '--providers.docker.useBindPortIP=true'
+      - '--providers.docker.exposedbydefault=false'
+      - '--providers.docker.endpoint=unix:///var/run/docker.sock'
+      - '--certificatesresolvers.letsencrypt.acme.httpchallenge=true'
+      - '--certificatesresolvers.letsencrypt.acme.email=${ADMIN_EMAIL}'
+      - '--certificatesresolvers.letsencrypt.acme.storage=/cert/acme.json'
+      - '--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - './data/cert:/cert/'
+    labels:
+      - traefik.enable=true
+      # Dashboard
+      - traefik.http.routers.traefik.rule=(Host(`$XMPP_SERVER_URL`) && PathPrefix(`/api`)) || (Host(`$XMPP_SERVER_URL`) && PathPrefix(`/dashboard`))
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.tls.certresolver=letsencrypt
+      - traefik.http.routers.traefik.entrypoints=websecure
+      - traefik.http.routers.traefik.middlewares=dashboardauth
+      - traefik.http.middlewares.dashboardauth.basicauth.users=${DASHBOARD_HTACCESS}
+      # HTTPS Redirect
+      - 'traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)'
+      - traefik.http.routers.http-catchall.entrypoints=web
+      - traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+    networks:
+      - web
+
+  # XMPP chat server: prosody
+  xmpp-server:
+    build: build/prosody/
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - './data/prosody/conf:/etc/prosody/conf.d'
+      - './data/cert:/cert/:ro'
+      - './data/prosody/data:/var/lib/prosody/data'
+    ports:
+      - '5222:5222'
+      - '5223:5223'
+      - '5269:5269'
+      - '5280:5280'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.xmpp-server.rule=Host(`$XMPP_SERVER_URL`) && PathPrefix(`/_xmpp`)
+      - traefik.http.routers.xmpp-server.entrypoints=websecure
+      - traefik.http.routers.xmpp-server.tls=true
+      - traefik.http.routers.xmpp-server.tls.domains[0].main=${XMPP_SERVER_URL}
+      - traefik.http.routers.xmpp-server.tls.domains[1].main=${XMPP_GROUPS_URL}
+      - traefik.http.routers.xmpp-server.tls.domains[3].main=${XMPP_HOST_URL_1}
+      - traefik.http.routers.xmpp-server.tls.domains[4].main=${XMPP_HOST_URL_2}
+      - traefik.http.routers.xmpp-server.tls.domains[5].main=${XMPP_HOST_URL_3}
+      - traefik.http.routers.xmpp-server.tls.certresolver=letsencrypt
+      - traefik.http.services.xmpp-server.loadbalancer.server.port=5280
+    networks:
+      - web
+
+  # XMPP http external upload: prosody-filer
+  xmpp-filer:
+    build: build/filer/
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - './data/http-upload:/app/uploads'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.xmpp-filer.rule=Host(`$XMPP_SERVER_URL`) && PathPrefix(`/_xmpp/upload`)
+      - traefik.http.routers.xmpp-filer.entrypoints=websecure
+      - traefik.http.routers.xmpp-filer.tls=true
+      - traefik.http.routers.xmpp-filer.tls.certresolver=letsencrypt
+      - traefik.http.services.xmpp-filer.loadbalancer.server.port=5050
+    networks:
+      - web
+
+  # XMPP stun/turn server: coturn
+  xmpp-turn:
+    build: build/coturn/
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3478"
+      - "5349"
+      - "49152-65535"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.xmpp-turn.tls=true
+      - traefik.http.routers.xmpp-turn.tls.certresolver=letsencrypt
+      - traefik.http.routers.xmpp-turn.domains[0].main=$TURN_HOST
+    networks:
+      - web
