@@ -93,21 +93,23 @@ services:
     networks:
       - web
 
-  # XMPP stun/turn server: coturn
+  # XMPP stun/turn server: eturnal
   xmpp-turn:
     image: xamanu/xmpp-turn:latest
     restart: unless-stopped
     env_file: .env
     volumes:
       - './data/cert:/cert/:ro'
+      - './data/turn:/var/lib/turn'
     ports:
-      - "3478"
-      - "5349"
-      - "49152-65535"
+      - "3478:3478"
+      - "5349:5349"
+      - "49160-49200:49160-49200/udp"
     labels:
       - traefik.enable=true
       - traefik.http.routers.xmpp-turn.tls=true
+      - traefik.http.routers.xmpp-turn.rule=Host(`$TURN_HOST`)
+      - traefik.http.routers.xmpp-turn.entrypoints=websecure
       - traefik.http.routers.xmpp-turn.tls.certresolver=letsencrypt
-      - traefik.http.routers.xmpp-turn.domains[0].main=$TURN_HOST
     networks:
       - web

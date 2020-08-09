@@ -71,7 +71,8 @@ XMPP_HOST_URL_3 =
 # video calls. Leave uncommented and empty if not used.
 #
 TURN_HOST=turn.chat.YOURDOMAIN.TLD
-TURN_EXTERNAL_IP=
+TURN_IPV4=
+TURN_IPV6=
 
 # Dash board access
 #
