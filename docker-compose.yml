@@ -100,7 +100,6 @@ services:
     env_file: .env
     volumes:
       - './data/cert:/cert/:ro'
-      - './data/turn:/var/lib/turn'
     ports:
       - "3478:3478"
       - "5349:5349"

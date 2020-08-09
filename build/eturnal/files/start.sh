@@ -32,8 +32,11 @@ else
         if [ -f /tmp/certs/${TURN_HOST}/privatekey.pem ]; then
             mv /tmp/certs/${TURN_HOST}/certificate.pem /tmp/certs/${TURN_HOST}/privatekey.pem /etc/eturnal/tls/
         else
-            echo "ERROR: Traefik generated letsencrypt certificates not found!"
+            echo "ERROR: Traefik generated certificates not found for host domain"
         fi
+    else
+        echo "ERROR: No certificates have been provided from traefik
     fi
+fi
 
 exec eturnalctl foreground "$@"
