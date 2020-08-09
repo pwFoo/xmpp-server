@@ -13,5 +13,7 @@ EXPOSE 3478
 EXPOSE 5349
 EXPOSE 49152-65535
 
+VOLUME ["/var/lib/turn"]
+
 COPY ./files/start.sh /
 ENTRYPOINT ["/start.sh"]
