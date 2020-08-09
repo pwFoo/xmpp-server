@@ -9,7 +9,7 @@ Everybody needs an open communication tool without walls and gated communities. 
 
 ## Components
 
-[Docker](https://www.docker.com/) images containing the [Prosody](https://prosody.im) server. It is orchestrated by the reverse proxy [traefik](https://traefik.io) and provides out-of-the-box secure connections with certificates by [Let's Encrypt](https://letsencrypt.org).
+[Docker](https://www.docker.com/) images containing the [Prosody](https://prosody.im) server. It is orchestrated by the reverse proxy [traefik](https://traefik.io) and provides out-of-the-box secure connections with certificates by [Let's Encrypt](https://letsencrypt.org). It comes with a turn server based on [eturnal](https://eturnal.net/) to provide comfortable audio and video call capabilities.
 
 ## Installation
 
@@ -19,6 +19,7 @@ Before you start, you have to configure your domain's **dynamic name server (DNS
 ```
 xmpp.example.com.            A        XXX.XXX.XXX.XXX        (XMPP_SERVER_URL)
 conference.xmpp.example.com. CNAME    xmpp.example.com.      (XMPP_GROUPS_URL)
+turn.xmpp.example.com.       CNAME    xmpp.example.com.      (TURN_HOST)
 chat.example.com.            CNAME    xmpp.example.com.      (XMPP_WEBCLIENT_URL)
 ```
 
@@ -41,6 +42,8 @@ Only some variables you have to specify in the [configuration file](./env-exampl
 * `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
 * `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
 * `TURN_HOST`: Domain for the stun/turn server for audio and video calls (required)
+* `TURN_IPv4`: IPv4 address of the stun/turn server for audio and video calls (required)
+* `TURN_IPv6`: IPv6 address of the stun/turn server for audio and video calls (optional)
 * `XMPP_HOST_URL_1`, `XMPP_HOST_URL_2` and `XMPP_HOST_URL_3`: Virtual hosts for xmpp addresses(optional)
 
 ### License
