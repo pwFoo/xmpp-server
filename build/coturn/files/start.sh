@@ -15,8 +15,8 @@ echo "external-ip=$TURN_EXTERNAL_IP" >> /etc/turnserver.conf
 mkdir -p /tmp/certs && mkdir -p /etc/coturn/certs
 if [ -f /cert/acme.json ]; then
     traefik-certs-dumper file --domain-subdir --crt-ext=.pem --key-ext=.pem --source /cert/acme.json --dest /tmp/certs --version v2
-    if [ -f /tmp/certs/certs/${TURN_HOST}/privatekey.pem ]; then
-        mv tmp/certs/certs/${TURN_HOST}/certificate.pem /tmp/certs/certs/${TURN_HOST}/privatekey.pem /etc/coturn/certs/
+    if [ -f /tmp/certs/${TURN_HOST}/privatekey.pem ]; then
+        mv /tmp/certs/${TURN_HOST}/certificate.pem /tmp/certs/${TURN_HOST}/privatekey.pem /etc/coturn/certs/
         # paths to conntecion certificates for encryption
         echo "cert=/etc/coturn/certs/certificate.pem"
         echo "pkey=/etc/coturn/certs/privatekey.pem"
