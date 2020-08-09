@@ -35,7 +35,7 @@ else
             echo "ERROR: Traefik generated certificates not found for host domain"
         fi
     else
-        echo "ERROR: No certificates have been provided from traefik
+        echo "ERROR: No certificates have been provided from traefik"
     fi
 fi
 
