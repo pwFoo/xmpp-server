@@ -40,6 +40,5 @@ echo "fingerprint" >> /etc/turnserver.conf
 echo "log-file stdout" >> /etc/turnserver.conf
 # disable command-line access
 echo "no-cli" >> /etc/turnserver.conf
-echo "lt-cred-mech" >> /etc/turnserver.conf
 
 exec /usr/bin/turnserver "$@"
