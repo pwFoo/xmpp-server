@@ -109,6 +109,10 @@ smacks_max_old_sessions = 10
 -- Push fix for ChatSecure
 push_notification_important_body = "New Message"
 
+-- Turn server connection
+turncredentials_host = "{{TURN_HOST}}"
+turncredentials_secret = "{{SECRET}}"
+
 -- Most of configuration is split up in separate files
 Include "modules.cfg.lua";
 Include "components.cfg.lua";

@@ -40,7 +40,8 @@ Only some variables you have to specify in the [configuration file](./env-exampl
 * `XMPP_SERVER_URL`: Domain for the xmpp server (required)
 * `XMPP_GROUPS_URL`: Domain for the group chat (muc) server (required)
 * `XMPP_WEBCLIENT_URL`: Domain for the web chat client (required)
-* `XMPP_HOST_URL_1`, `XMPP_HOST_URL_2` and `XMPP_HOST_URL_3`: Virtual hosts for xmpp addresses (optional)
+* `TURN_HOST`: Domain for the stun/turn server for audio and video calls (required)
+* `XMPP_HOST_URL_1`, `XMPP_HOST_URL_2` and `XMPP_HOST_URL_3`: Virtual hosts for xmpp addresses(optional)
 
 ### License
 

@@ -30,6 +30,7 @@ modules_enabled = {
 		"server_contact_info"; -- Publish admin and contact information about the server.
 		"smacks"; -- Support for unstable (mobile) Networks.
 		"time"; -- Let others know the time here on this server.
+		"turncredentials"; -- Turn server for audio and video calls
 		"tls"; -- Add support for secure TLS on connections.
 		"throttle_presence"; -- Reduce presence status updates.
 		"uptime"; -- Report how long server has been running.

@@ -11,12 +11,15 @@ elif [ -z "${ADMIN_XMPP}" ]; then
     echo "Failure starting xmpp server: The environment variable ADMIN_XMPP must be set."
 elif [ -z "${SECRET}" ]; then
     echo "Failure starting xmpp server: The environment variable SECRET must be set."
+elif [ -z "${TURN_HOST}" ]; then
+    echo "Failure starting xmpp server: The environment variable TURN_HOST must be set."
 else
 
     echo "Welcome to your xmpp-server"
     echo "Main server url: ${XMPP_SERVER_URL}"
     echo "HTTP upload endpoint url: ${XMPP_SERVER_URL}/_xmpp/upload"
     echo "Multi user chat (MUC) url: ${XMPP_GROUPS_URL}"
+    echo "STUN/TURN server url: ${TURN_HOST}"
     
     # Replace required variables with configuration
     sed -i "s#{{ADMIN_EMAIL}}#${ADMIN_EMAIL}#" /etc/prosody/prosody.cfg.lua
@@ -28,6 +31,7 @@ else
     sed -i "s#{{XMPP_SERVER_URL}}#${XMPP_SERVER_URL}#" /etc/prosody/virtual-hosts.cfg.lua
     sed -i "s#{{XMPP_GROUPS_URL}}#${XMPP_GROUPS_URL}#" /etc/prosody/virtual-hosts.cfg.lua
     sed -i "s#{{SECRET}}#${SECRET}#" /etc/prosody/prosody.cfg.lua
+    sed -i "s#{{TURN_HOST}}#${TURN_HOST}#" /etc/prosody/prosody.cfg.lua
 
     mkdir -p /tmp/certs && mkdir -p /etc/prosody/certs
 
