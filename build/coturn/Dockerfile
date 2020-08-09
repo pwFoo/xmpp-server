@@ -9,9 +9,8 @@ RUN curl -ssL https://github.com/ldez/traefik-certs-dumper/releases/download/v2.
     chmod +x /usr/local/bin/traefik-certs-dumper && \
     mkdir -p /etc/coturn/certs
 
-EXPOSE 3478
-EXPOSE 5349
-EXPOSE 49152-65535
+EXPOSE 3478 3478/udp
+EXPOSE 5349 5349/udp
 
 VOLUME ["/var/lib/turn"]
 

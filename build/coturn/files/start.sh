@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-# set server url
+# set server url and name
 echo "realm=$TURN_HOST" > /etc/turnserver.conf
+echo "server-name=$NAME" >> /etc/turnserver.conf
 
 # define authentification mechanism and static secret
 echo "use-auth-secret" >> /etc/turnserver.conf
@@ -25,20 +26,20 @@ if [ -f /cert/acme.json ]; then
     fi
 fi
 
-
 # main turn server ports
 echo "listening-port=3478" >> /etc/turnserver.conf
 echo "tls-listening-port=5349" >> /etc/turnserver.conf
 
 # ports that clients can connect to
-echo "min-port=49152" >> /etc/turnserver.conf
-echo "max-port=65535" >> /etc/turnserver.conf
+echo "min-port=49160" >> /etc/turnserver.conf
+echo "max-port=49200" >> /etc/turnserver.conf
 
 # handle server fingerprinting
 echo "fingerprint" >> /etc/turnserver.conf
 # send output to stdout for docker setup
 echo "log-file stdout" >> /etc/turnserver.conf
-# disable command-line access 
+# disable command-line access
 echo "no-cli" >> /etc/turnserver.conf
+echo "lt-cred-mech" >> /etc/turnserver.conf
 
 exec /usr/bin/turnserver "$@"
