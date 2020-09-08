@@ -13,7 +13,7 @@ Everybody needs an open communication tool without walls and gated communities. 
 
 ## Installation
 
-Before you start, you have to configure your domain's **dynamic name server (DNS) settings**. Basically you need one A record pointing to the server and a couple of CNAME records for each additional subdomain we need (for group chat and the web client) pointing to the domain of the server:
+Before you start, you have to configure your domain's **domain name server (DNS) settings**. Basically you need one A record pointing to the server and a couple of CNAME records for each additional subdomain we need (for group chat and the web client) pointing to the domain of the server:
 
 
 ```
