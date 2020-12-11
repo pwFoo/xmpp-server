@@ -49,7 +49,7 @@ services:
 
   # XMPP chat server: prosody
   xmpp-server:
-    image: xamanu/xmpp-prosody:version-0.9
+    image: xamanu/xmpp-prosody:version-0.10
     restart: unless-stopped
     env_file: .env
     volumes:
@@ -78,7 +78,7 @@ services:
 
   # XMPP http external upload: prosody-filer
   xmpp-filer:
-    image: xamanu/xmpp-filer:version-0.9
+    image: xamanu/xmpp-filer:version-0.10
     restart: unless-stopped
     env_file: .env
     volumes:
@@ -95,7 +95,7 @@ services:
 
   # XMPP stun/turn server: eturnal
   xmpp-turn:
-    image: xamanu/xmpp-turn:version-0.9
+    image: xamanu/xmpp-turn:version-0.10
     restart: unless-stopped
     env_file: .env
     volumes:
