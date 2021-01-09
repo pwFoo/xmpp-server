@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 EXPOSE 5050
 VOLUME ["/app/uploads"]
@@ -6,10 +6,12 @@ VOLUME ["/app/uploads"]
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install xmpp-filer
-RUN apt-get update --yes && apt-get install --yes wget
-RUN wget -q https://github.com/ThomasLeister/prosody-filer/releases/download/v1.0.2/prosody-filer_linux_x86_64 -O /app/xmpp-filer
-RUN chmod +x /app/xmpp-filer
+RUN apt-get update --yes && apt-get install --yes golang-go git wget
+RUN go get github.com/xamanu/xmpp-filer
+RUN cd /root/go/src/github.com/xamanu/xmpp-filer && ./build.sh
+RUN mv /root/go/src/github.com/xamanu/xmpp-filer/prosody-filer /app/xmpp-filer
 
+RUN chmod +x /app/xmpp-filer
 COPY files/config.toml /app/config.toml
 COPY files/start.sh /start.sh
 
