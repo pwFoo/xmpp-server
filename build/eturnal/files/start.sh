@@ -7,8 +7,8 @@ elif [ -z "${XMPP_GROUPS_URL}" ]; then
     echo "Failure starting xmpp server: The environment variable XMPP_GROUPS_URL must be set."
 elif [ -z "${ADMIN_EMAIL}" ]; then
     echo "Failure starting xmpp server: The environment variable ADMIN_EMAIL must be set."
-elif [ -z "${ADMIN_XMPP}" ]; then
-    echo "Failure starting xmpp server: The environment variable ADMIN_XMPP must be set."
+elif [ -z "${XMPP_ADMIN}" ]; then
+    echo "Failure starting xmpp server: The environment variable XMPP_ADMIN must be set."
 elif [ -z "${SECRET}" ]; then
     echo "Failure starting xmpp server: The environment variable SECRET must be set."
 elif [ -z "${TURN_HOST}" ]; then

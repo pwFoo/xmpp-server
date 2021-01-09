@@ -94,8 +94,8 @@ sql = { driver = "SQLite3", database = "prosody.sqlite3" }
 
 -- Provide information where to contact the administrator
 contact_info = {
-    abuse = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{ADMIN_XMPP}}" };
-    admin = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{ADMIN_XMPP}}" };
+    abuse = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{XMPP_ADMIN}}" };
+    admin = { "mailto:{{ADMIN_EMAIL}}", "xmpp:{{XMPP_ADMIN}}" };
   };
 
 -- SMACK settings 
