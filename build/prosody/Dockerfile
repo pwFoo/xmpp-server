@@ -15,7 +15,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Add backports repository
 RUN printf "deb http://deb.debian.org/debian buster-backports main main non-free" > /etc/apt/sources.list.d/backports.list
-RUN printf "deb http://deb.debian.org/debian unstable main main non-free" > /etc/apt/sources.list.d/unstable.list
 
 # Install software
 RUN apt-get update --yes && apt-get install -y --no-install-recommends \
@@ -45,9 +44,9 @@ RUN apt-get update --yes && apt-get install -y --no-install-recommends \
         ssl-cert \
         mercurial \
         git \
+        sudo \
     && apt-get -t buster-backports install -y \
         prosody \
-    && apt-get -t unstable install -y \
         prosody-modules \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

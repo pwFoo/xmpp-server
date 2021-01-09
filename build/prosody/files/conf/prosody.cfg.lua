@@ -13,9 +13,6 @@ data_path = "/var/lib/prosody/data"
 -- For more information see: http://prosody.im/doc/libevent
 use_libevent = true
 
--- Disallow to run as a daemon. Necessary in a docker setup.
-daemonize = false;
-
 -- Disable account creation by default, for security
 -- For more information see http://prosody.im/doc/creating_accounts
 allow_registration = false

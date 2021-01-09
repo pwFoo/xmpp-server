@@ -22,7 +22,6 @@ modules_enabled = {
 		"ping"; -- Replies to XMPP pings with pongs.
 		"private"; -- Private XML storage (for room bookmarks, etc.)
 		"proxy65";
-		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 		"register"; -- Allow users to register on this server using a client and change passwords.
 		"register_web"; -- Allow users to register online.
 		"roster"; -- Allow users to have a roster.

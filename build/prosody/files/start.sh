@@ -69,5 +69,5 @@ else
     chown -R prosody:prosody /var/lib/prosody/data
 
     # Go jabber go
-    prosodyctl start
+    sudo -u prosody prosodyctl -F
 fi
