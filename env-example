@@ -17,7 +17,7 @@ ADMIN_EMAIL=USER@YOURDOMAIN.TLD
 
 # XMPP account of the server's administrator (required)
 #
-ADMIN_XMPP=USER@YOURDOMAIN.TLD
+XMPP_ADMIN=USER@YOURDOMAIN.TLD
 
 
 # XMPP - Domain for the xmpp server (required)
