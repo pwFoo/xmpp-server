@@ -8,9 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install xmpp-filer
 RUN apt-get update --yes && apt-get install --yes golang-go git wget
 RUN go get github.com/xamanu/xmpp-filer
-RUN cd ~/go/src/github.com/xamanu/xmpp-filer
-RUN ./build.sh
-RUN mv prosody-filer /app/xmpp-filer
+RUN cd /root/go/src/github.com/xamanu/xmpp-filer && ./build.sh
+RUN mv /root/go/src/github.com/xamanu/xmpp-filer/prosody-filer /app/xmpp-filer
 
 RUN chmod +x /app/xmpp-filer
 COPY files/config.toml /app/config.toml
